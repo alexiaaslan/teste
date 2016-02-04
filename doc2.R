@@ -1,4 +1,7 @@
-#bibliotecas
+# limpar ambiente
+# rm(list=ls())
+
+# iniciar bibliotecas 
 
 library(XML)
 library(RCurl)
@@ -70,7 +73,7 @@ xmlGetAttr(rBills[[1]], "number", NA, as.integer)
 as.integer(sapply(rBills, xmlGetAttr, name = "number")) 
 #fim cod dos autores
 
-# So jogar a URL NAO FUNCIONA
+# So jogar a URL de HTTPS NAO FUNCIONA
 url = xmlParse("https://www.govtrack.us/data/congress/111/bills/hr/hr1/data.xml")
 
 # precisa fazer isso:
@@ -197,3 +200,10 @@ xmlSApply(root, function(evNode){
 #ou inves de ficar indo rodando uma a uma, pegando primeiro o evento, depois o valor, ele busca tudo que se encaixa no endereco
 
 getNodeSet(root, "/merge/event/param[@name='magnitude']/@value")
+
+#3.9
+doc1 <- xmlParse("merged_catalog.xml.gz")
+
+doc <- xmlParse("merged_catalog.xml.gz", useInternalNodes = FALSE)
+
+
