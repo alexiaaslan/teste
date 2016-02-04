@@ -7,6 +7,14 @@ library(XML)
 library(RCurl)
 library(RJSONIO)
 
+# XML ANd Web Technologies for Data Sciences with R
+
+#Codigos apresentados em cada capitulo
+# http://rxmlwebtech.org/chapterCode.html
+
+#Arquivos usados
+#http://www.rxmlwebtech.org/Data/
+
 #cap 1
 
 #ex 1
