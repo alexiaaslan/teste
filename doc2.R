@@ -214,4 +214,13 @@ doc1 <- xmlParse("merged_catalog.xml.gz")
 
 doc <- xmlParse("merged_catalog.xml.gz", useInternalNodes = FALSE)
 
+#cap 4
 
+#4.1
+
+system.time(mi1 <- xmlParse("mi1.txt.gz"))
+
+mol <- getNodeSet(mi1, "/*/molecule[.//name/text () = 'frm-1']")
+
+xpexpr <- ".//interaction/moleculeName/text()"
+lapply(mol, function(node) xpathSApply(node, xpexpr, xmlValue))
