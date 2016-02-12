@@ -48,5 +48,23 @@ urlbase <- gsub("BUSCA", busca, urlbase)
 
 mybrowser$navigate(urlbase)
 
+d <- mybrowser$findElement(using = 'id', "cse-search-results")
+mybrowser$switchToFrame(d$search-frame)
+
+
+mybrowser$switchToFrame(mybrowser$googleSearchFrame)
+mybrowser$findElement(using = 'xpath', value = "//div[@id='cse']")
+wxbox <- mybrowser$findElement(using = 'css selector', "#inputstring")
+wxbox$clickElement()
+wxbox$sendKeysToElement(list("New York"))
+wxbutton <- mybrowser$findElement(using = 'css selector', "#btnSearch")
+wxbutton$clickElement()
+mybrowser$goBack()
+wxbox <- mybrowser$findElement(using = 'css selector', "#inputstring")
+wxbox$sendKeysToElement(list("01701", "\uE007"))
+
+
+
+
 wxbutton <- mybrowser$findElement(using = 'xpath', "//div[@class='gsc-cursor-page']")
 wxbutton$clickElement()
