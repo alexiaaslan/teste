@@ -53,7 +53,7 @@ mybrowser$findElement(using = 'xpath', value = "//div[@id='cse']")
 
 # tentativa 2
 mybrowser$findElement(using = 'xpath', "//*[@id='cse']")
-wxbox <- mybrowser$findElement(using = 'id', "cse-search-results")
+wxbox <- mybrowser$findElement(using = 'xpath', "//*[@id='cse']")
 wxbox$clickElement()
 
 mybrowser$switchToFrame(d$search-frame)
