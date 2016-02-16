@@ -31,15 +31,14 @@ wxbox <- mybrowser$findElement(using = 'css selector', "#inputstring")
 wxbox$sendKeysToElement(list("01701", "\uE007"))
 
 
-# ------ Correio Popular
+# ------ Correio Popular ----- LEO OLHE A PARTIR DAQUI :D ------
 
-startServer()
-checkForServer()
+# iniciar selenium
 startServer()
 mybrowser <- remoteDriver()
 mybrowser$open()
 
-
+# navegar no site
 busca <- "prefeito"
 
 urlbase <- "http://correio.rac.com.br/busca_nova.php?cref=http%3A%2F%2Fcorreio.rac.com.br%2Fcse.xml&cof=FORID%3A11&q=BUSCA&sa=Search"
@@ -48,23 +47,17 @@ urlbase <- gsub("BUSCA", busca, urlbase)
 
 mybrowser$navigate(urlbase)
 
-d <- mybrowser$findElement(using = 'id', "cse-search-results")
+# aqui comeca a dar erro e nao consigo sair daqui
+#nao sei se eh a tag ou outra coisa
+mybrowser$findElement(using = 'xpath', value = "//div[@id='cse']")
+
+# tentativa 2
+mybrowser$findElement(using = 'xpath', "//*[@id='cse']")
+wxbox <- mybrowser$findElement(using = 'id', "cse-search-results")
+wxbox$clickElement()
+
 mybrowser$switchToFrame(d$search-frame)
 
-
-mybrowser$switchToFrame(mybrowser$googleSearchFrame)
-mybrowser$findElement(using = 'xpath', value = "//div[@id='cse']")
-wxbox <- mybrowser$findElement(using = 'css selector', "#inputstring")
-wxbox$clickElement()
-wxbox$sendKeysToElement(list("New York"))
-wxbutton <- mybrowser$findElement(using = 'css selector', "#btnSearch")
-wxbutton$clickElement()
-mybrowser$goBack()
-wxbox <- mybrowser$findElement(using = 'css selector', "#inputstring")
-wxbox$sendKeysToElement(list("01701", "\uE007"))
-
-
-
-
+# tentativa 3
 wxbutton <- mybrowser$findElement(using = 'xpath', "//div[@class='gsc-cursor-page']")
 wxbutton$clickElement()
