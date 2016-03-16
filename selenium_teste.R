@@ -56,7 +56,8 @@ mybrowser$findElement(using = 'xpath', "//*[@id='cse']")
 #wxbox <- mybrowser$findElement(using = 'id', "cse-search-results")
 wxbox$clickElement()
 
-mybrowser$switchToFrame(d$search-frame)
+wframe <- mybrowser$findElement(using = 'xpath', "//iframe[@name = 'googleSearchFrame']")
+mybrowser$switchToFrame(wframe)  
 
 # tentativa 3
 wxbutton <- mybrowser$findElement(using = 'xpath', "//div[@class='gsc-cursor-page']")
