@@ -85,6 +85,7 @@ class(ult_pag)
 
 ult_pag <- substr(d, (nchar(d)-2), (nchar(d)))
 
+dados <- data.frame()
 for (i in 1:as.numeric(ult_pag)){
   
   for (i in 1:10){
@@ -95,7 +96,29 @@ for (i in 1:as.numeric(ult_pag)){
   atributos <- xpathSApply(pagina, "//ul[@class='lista_navegacao']/li/a", xmlGetAttr, name = "href")
   print(atributos)
   
+  dados <- rbind(dados, conteudos)
+  
+  
   }
 }
+------
+library(XML)
+urlbase <- "http://www.al.sp.gov.br/alesp/busca/?q=merenda&page="
 
+dados <- data.frame()
 
+for (i in 1:5){
+    print(i)
+    url <- paste(urlbase, i, sep = "")
+  
+    pagina <- readLines(url)
+    pagina <- htmlParse(pagina)
+    pagina <- xmlRoot(pagina)
+    
+    conteudos <- xpathSApply(pagina, "//ul[@class='lista_navegacao']/li/a", xmlValue)
+    
+    atributos <- xpathSApply(pagina, "//ul[@class='lista_navegacao']/li/a", xmlGetAttr, name = "href")
+    
+    dados <- rbind(dados, data.frame(conteudos, atributos))
+    
+}
